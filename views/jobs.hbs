@@ -1,0 +1,20 @@
+<main>
+    <div id="jobs-container2" class="container">
+        <div class="row"></div>
+        <div class="col-md-12">
+            <h2 id="jobs-list-title">Veja as nossas vagas em destaque</h2>
+            <ul id="job-list" class="list-group">
+                {{#each jobs}}
+                <li class="list-group-item {{#if dataValues.new_job}}new-job{{/if}}">
+                    <img src="/img/office-building_2572990.png" alt="Company">
+                    <p>{{dataValues.company}}</p>
+                    <h2>{{dataValues.title}}</h2>
+                    <p>R$ {{dataValues.salary}}</p>
+                    <span class="new-job-label">Nova</span>
+                    <a class="btn btn-primary" href="/jobs/view/{{dataValues.id}}">Ver vaga</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</main>
