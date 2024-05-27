@@ -1,15 +1,15 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
-const app = express();
 const path = require('path')
-const db = require('./db/connection')
+const db = require('../db/connection')
 const bodyParser = require('body-parser');
-const Job = require('./models/Job');
+const Job = require('../models/Job');
 const Sequelize = require('sequelize');
 const OP = Sequelize.Op;
 
-const PORT = 3000;
+const app = express();
 
+const PORT = process.env.PORT || 3000;
 
 
 app.listen(PORT, function () {
@@ -22,13 +22,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // handle bars
 app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main' }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 
 
 
 // static folders
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // db connection
 db
@@ -75,11 +75,7 @@ app.get('/', (req, res) => {
             .catch(err => console.log(err));
     }
 });
-
-
-
-  
-    // let query = '%' +search+ '%'; //PH -> PHP, Word -> Wordpress, press -> Wordpress
+  // let query = '%' +search+ '%'; //PH -> PHP, Word -> Wordpress, press -> Wordpress
 
     
     app.get('/jobs', (req, res) => {
@@ -94,7 +90,7 @@ app.get('/', (req, res) => {
     });
        
 //jobs routes
-app.use('/jobs', require('./routes/jobs'));
+app.use('/jobs', require('../routes/jobs'));
 
-
+module.exports = app;
 

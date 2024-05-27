@@ -4,7 +4,9 @@
   "description": "Este sistema é um portal para programadores encontrarem vagas de trabalho",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon api/app.js",
+    "start": "node api/app.js",
+    "build": "echo 'No build step necessary'"
   },
   "keywords": [
     "dev",

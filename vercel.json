@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "functions": {
+      "api/app.js": {
+        "runtime": "node@20.13.1"
+      }
+    },
+    "routes": [
+      { "src": "/(.*)", "dest": "/api/app.js" }
+    ]
+  }
+  
