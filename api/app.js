@@ -5,11 +5,20 @@ const db = require('../db/connection')
 const bodyParser = require('body-parser');
 const Job = require('../models/Job');
 const Sequelize = require('sequelize');
+const dotenv = require('dotenv');
 const OP = Sequelize.Op;
+
+dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_URL || 3000;
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 
 
 app.listen(PORT, function () {
